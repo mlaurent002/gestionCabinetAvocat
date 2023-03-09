@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.inti.entities.Utilisateur;
 
-public interface IutilisateurService {
+public interface IUtilisateurService {
 	List<Utilisateur> findAll();
 
 	Utilisateur findOne(Long id);

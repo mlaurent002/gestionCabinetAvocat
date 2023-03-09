@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.entities.Utilisateur;
-import com.inti.service.interfaces.IutilisateurService;
+import com.inti.service.interfaces.IUtilisateurService;
 
 @RestController
 @CrossOrigin
 public class UtilisateurController {
 	@Autowired
-	IutilisateurService utilisateurService;
+	IUtilisateurService utilisateurService;
 	@Autowired
 	//PasswordEncoder passwordEncoder;
 

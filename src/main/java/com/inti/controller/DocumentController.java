@@ -1,4 +1,4 @@
-package com.inti.restController;
+package com.inti.controller;
 
 import java.util.List;
 

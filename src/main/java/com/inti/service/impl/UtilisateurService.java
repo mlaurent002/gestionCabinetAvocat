@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.inti.entities.Utilisateur;
 import com.inti.repositories.UtilisateurRepository;
-import com.inti.service.interfaces.IutilisateurService;
+import com.inti.service.interfaces.IUtilisateurService;
 
-public class UtilisateurService implements IutilisateurService{
+public class UtilisateurService implements IUtilisateurService{
 	@Autowired
 	UtilisateurRepository utilisateurRepository;
 
