@@ -29,11 +29,11 @@ public class AppUtilisateurDetailsService implements UserDetailsService {
 		// profil : idUser : 1 idRole : 3 : comptable
 		// Récupération des profils
 		// Les roles des users
-		Set<Role> roles = user.getRoles();
+		Set<Role> roles = utilisateur.getRoles();
 		// Les profils
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		for (Role role : roles) {
-			authorities.add(new SimpleGrantedAuthority(role.getName()));
+			authorities.add(new SimpleGrantedAuthority(role.getLibelle()));
 		}
 
 		// Fin de Récupération des profils
