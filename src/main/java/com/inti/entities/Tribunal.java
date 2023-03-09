@@ -22,9 +22,14 @@ public class Tribunal implements Serializable {
 	private Double fax;
 	private Double tel;
 	private String region;
-	@OneToMany(mappedBy="tache_fk")
+
+	@OneToMany(mappedBy="tribunalFK")
+	private Tache[] taches;
+
+	/*@OneToMany(mappedBy="tache_fk")
 	@Transient
-	private List<Tache> taches = new ArrayList<>();
+	private List<Tache> taches = new ArrayList<>();*/
+
 	
 	
 	//geters et seters

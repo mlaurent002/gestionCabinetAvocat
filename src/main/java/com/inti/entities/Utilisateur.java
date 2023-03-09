@@ -31,6 +31,8 @@ public class Utilisateur implements Serializable {
 	private String emailUtilisateur;
 	private String nomUtilisateur;
 	private String prenomUtilisateur;
+	private String username;
+	private String password;
 
 	// Relation entre les classes :
 	// ManyToMany Utilisateur <-> Role
@@ -47,12 +49,14 @@ public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, Set<Role> roles,
-			List<Tache> taches) {
+	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
+			String password, Set<Role> roles, List<Tache> taches) {
 		super();
 		this.emailUtilisateur = emailUtilisateur;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
+		this.username = username;
+		this.password = password;
 		this.roles = roles;
 		this.taches = taches;
 	}
@@ -106,12 +110,28 @@ public class Utilisateur implements Serializable {
 		this.taches = taches;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	// To String
 	@Override
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", emailUtilisateur=" + emailUtilisateur
-				+ ", nomUtilisateur=" + nomUtilisateur + ", prenomUtilisateur=" + prenomUtilisateur + ", roles=" + roles
-				+ ", taches=" + taches + "]";
+				+ ", nomUtilisateur=" + nomUtilisateur + ", prenomUtilisateur=" + prenomUtilisateur + ", username="
+				+ username + ", password=" + password + ", roles=" + roles + ", taches=" + taches + "]";
 	}
 
 }
