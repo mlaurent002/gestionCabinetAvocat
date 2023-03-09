@@ -1,5 +1,7 @@
 package com.inti.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TRIBUNAUX", schema = "gestion_avocat")
@@ -19,8 +22,14 @@ public class Tribunal implements Serializable {
 	private Double fax;
 	private Double tel;
 	private String region;
+
 	@OneToMany(mappedBy="tribunalFK")
 	private Tache[] taches;
+
+	/*@OneToMany(mappedBy="tache_fk")
+	@Transient
+	private List<Tache> taches = new ArrayList<>();*/
+
 	
 	
 	//geters et seters
@@ -48,10 +57,10 @@ public class Tribunal implements Serializable {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	public Tache[] getTaches() {
+	public List<Tache> getTaches() {
 		return taches;
 	}
-	public void setTaches(Tache[] taches) {
+	public void setTaches(List<Tache> taches) {
 		this.taches = taches;
 	}
 	
@@ -64,7 +73,7 @@ public class Tribunal implements Serializable {
 		this.idTribunal = idTribunal;
 	}
 	// constructeurs
-	public Tribunal(String adresse, Double fax, Double tel, String region, Tache[] taches) {
+	public Tribunal(String adresse, Double fax, Double tel, String region, List<Tache> taches) {
 		
 		this.adresse = adresse;
 		this.fax = fax;
