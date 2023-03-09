@@ -12,14 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name ="TACHES", schema ="gestion_cabinet_avocat_db")
 public class Tache implements Serializable {
 	// Attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTache;
+	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 	private String titreTache; 
 	private String descriptionTache; 
