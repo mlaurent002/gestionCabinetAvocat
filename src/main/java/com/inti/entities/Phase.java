@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-@Table(name = "PHASES", schema = "gestion_avocat")
+@Table(name = "PHASES", schema = "gestion_cabinet_avocat_db")
 public class Phase implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "TRIBUNAUX", schema = "gestion_avocat")
+@Table(name = "TRIBUNAUX", schema = "gestion_cabinet_avocat_db")
 public class Tribunal implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +24,9 @@ public class Tribunal implements Serializable {
 	private String region;
 
 	@OneToMany(mappedBy="tribunalFK")
-	private Tache[] taches;
-
-	/*@OneToMany(mappedBy="tache_fk")
 	@Transient
-	private List<Tache> taches = new ArrayList<>();*/
+	private List<Tache> taches = new ArrayList<>();
 
-	
 	
 	//geters et seters
 	public String getAdresse() {

@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "UTILISATEURS", schema = "gestion_cabinet_avocat")
+@Table(name = "UTILISATEURS", schema = "gestion_cabinet_avocat_db")
 public class Utilisateur implements Serializable {
 
 	// Attributs
@@ -51,7 +51,6 @@ public class Utilisateur implements Serializable {
 
 	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
 			String password, Set<Role> roles, List<Tache> taches) {
-		super();
 		this.emailUtilisateur = emailUtilisateur;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
