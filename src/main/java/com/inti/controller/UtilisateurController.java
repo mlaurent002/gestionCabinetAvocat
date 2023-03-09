@@ -3,6 +3,7 @@ package com.inti.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +24,7 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 	@Autowired
-	//PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("/utilisateurs")
 	public List<Utilisateur> findAll() {
@@ -37,7 +38,14 @@ public class UtilisateurController {
 	
 	@PostMapping("/utilisateurs")
 	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
-		return utilisateurService.save(utilisateur);
+		Utilisateur currentUtilisateur=new Utilisateur(
+				utilisateur.getEmailUtilisateur(),
+				utilisateur.getNomUtilisateur(),
+				utilisateur.getPrenomUtilisateur(),
+				utilisateur.getUsername(),
+				passwordEncoder.encode(utilisateur.getPassword()));
+
+		return utilisateurService.save(currentUtilisateur);
 	}
 
 	@DeleteMapping("/utilisateurs/{idUtilisateur}")
@@ -48,21 +56,21 @@ public class UtilisateurController {
 	@PutMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur updateUtilisateurWithPut(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
-		Utilisateur currentUser = utilisateurService.findOne(id);
-		System.out.println(currentUser.toString());
-		currentUser.setNomUtilisateur(utilisateur.getNomUtilisateur());
-		currentUser.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
-		currentUser.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
-		//currentUser.setUsername(utilisateur.getUsername());
-		//currentUser.setPassword(utilisateur.getPassword());
-		return utilisateurService.save(currentUser);
+		Utilisateur currentUtilisateur = utilisateurService.findOne(id);
+		System.out.println(currentUtilisateur.toString());
+		currentUtilisateur.setNomUtilisateur(utilisateur.getNomUtilisateur());
+		currentUtilisateur.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
+		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
+		currentUtilisateur.setUsername(utilisateur.getUsername());
+		currentUtilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+		return utilisateurService.save(currentUtilisateur);
 	}
 
 	@PatchMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur updateUtilisateurWithPatch(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
-		Utilisateur currentUser = utilisateurService.findOne(id);
-		//currentUser.setPassword(utilisateur.getPassword());
-		return utilisateurService.save(currentUser);
+		Utilisateur currentUtilisateur = utilisateurService.findOne(id);
+		//currentUtilisateur.setPassword(utilisateur.getPassword());
+		return utilisateurService.save(currentUtilisateur);
 	}
 }

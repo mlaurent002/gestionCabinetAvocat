@@ -60,6 +60,16 @@ public class Utilisateur implements Serializable {
 		this.taches = taches;
 	}
 
+	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
+			String password) {
+		super();
+		this.emailUtilisateur = emailUtilisateur;
+		this.nomUtilisateur = nomUtilisateur;
+		this.prenomUtilisateur = prenomUtilisateur;
+		this.username = username;
+		this.password = password;
+	}
+
 	// Getters et Setters :
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
