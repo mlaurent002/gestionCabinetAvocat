@@ -26,7 +26,7 @@ public class Affaire {
 	@Transient
 	private List<Document> documents = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "tacheFK")
+	@OneToMany(mappedBy = "affaireFK2")
 	@Transient
 	private List<Tache> taches = new ArrayList<>();
 	

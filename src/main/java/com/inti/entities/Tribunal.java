@@ -19,7 +19,7 @@ public class Tribunal implements Serializable {
 	private Double fax;
 	private Double tel;
 	private String region;
-	@OneToMany(mappedBy="tache_fk")
+	@OneToMany(mappedBy="tribunalFK")
 	private Tache[] taches;
 	
 	
