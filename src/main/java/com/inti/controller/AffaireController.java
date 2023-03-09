@@ -27,9 +27,14 @@ public class AffaireController {
         return affaireService.findAll();
     }
 
-    @GetMapping("/affaires/{idAffaire}")
+    /*@GetMapping("/affaires/{idAffaire}")
     public Affaire findOne(@PathVariable("idAffaire") Long id) {
         return affaireService.findOne(id);
+    }*/
+    
+    @GetMapping("/affaires/{reference}")
+    public List<Affaire>  findByReference(@PathVariable("reference") String reference) {
+        return affaireService.findByReference(reference);
     }
 
     @PostMapping("/affaires")

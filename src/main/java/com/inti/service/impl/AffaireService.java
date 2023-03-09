@@ -34,6 +34,11 @@ public class AffaireService implements IAffaireService {
 	public void delete(Long id) {
 		affaireRepository.deleteById(id);;
 	}
+
+	@Override
+	public List<Affaire> findByReference(String reference) {
+		return affaireRepository.findByReference(reference);
+	}
 	
 	
 }
