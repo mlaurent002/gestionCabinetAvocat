@@ -50,6 +50,7 @@ public class UtilisateurController {
 				utilisateur.getPrenomUtilisateur(),
 				utilisateur.getUsername(),
 				passwordEncoder.encode(utilisateur.getPassword()),
+				utilisateur.getRoles(),
 				utilisateur.isEnable());
 				
 		return utilisateurService.save(currentUtilisateur);
