@@ -52,12 +52,13 @@ public class Utilisateur implements Serializable {
 
 	
 	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
-			String password, boolean enable) {
+			String password, Set<Role> roles,boolean enable) {
 		this.emailUtilisateur = emailUtilisateur;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
+		this.roles= roles;
 		this.enable = enable;
 	}
 
