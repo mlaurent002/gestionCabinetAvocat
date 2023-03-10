@@ -10,4 +10,5 @@ import com.inti.entities.Affaire;
 @Repository
 public interface AffaireRepository extends JpaRepository<Affaire, Long>{
 	List<Affaire> findByReference(String reference);
+	Affaire findOneByReference(String reference);
 }

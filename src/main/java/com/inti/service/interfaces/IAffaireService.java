@@ -14,5 +14,7 @@ public interface IAffaireService {
 	void delete(Long id);
 	
 	List<Affaire> findByReference(String reference);
+	
+	Affaire findOneByReference(String reference);
 
 }

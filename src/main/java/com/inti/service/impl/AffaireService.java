@@ -37,8 +37,13 @@ public class AffaireService implements IAffaireService {
 
 	@Override
 	public List<Affaire> findByReference(String reference) {
-		return affaireRepository.findByReference(reference);
+		return  affaireRepository.findByReference(reference);
+	}
+
+	@Override
+	public Affaire findOneByReference(String reference) {
+		return affaireRepository.findOneByReference(reference);
 	}
 	
-	
+		
 }

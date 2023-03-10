@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.entities.Affaire;
@@ -27,15 +28,20 @@ public class AffaireController {
         return affaireService.findAll();
     }
 
-    /*@GetMapping("/affaires/{idAffaire}")
+    @GetMapping("/affaires/{idAffaire}")
     public Affaire findOne(@PathVariable("idAffaire") Long id) {
         return affaireService.findOne(id);
+    }
+    
+    /*@GetMapping("/affaires/{reference}")
+    public Affaire  findByReference(@PathVariable("reference") String reference) {
+        return affaireService.findByReference(reference);
     }*/
     
-    @GetMapping("/affaires/{reference}")
-    public List<Affaire>  findByReference(@PathVariable("reference") String reference) {
-        return affaireService.findByReference(reference);
-    }
+    /*@GetMapping("/affaires/{reference}")
+    public Affaire  findOneByReference(@PathVariable("reference") String reference) {
+        return affaireService.findOneByReference(reference);
+    }*/
 
     @PostMapping("/affaires")
     public Affaire saveAffaire(@RequestBody Affaire affaire) {
@@ -47,7 +53,7 @@ public class AffaireController {
     	affaireService.delete(id);
     }
     @PutMapping("/affaires/{idAffaire}")
-    public Affaire updateAffaireWithPut(@PathVariable("idAffaire") Long id, @RequestBody Affaire affaire) { //
+    public Affaire updateAffaireWithPut(@PathVariable("idAffaire")  Long id, @RequestBody Affaire affaire) { //
         Affaire currentAffaire = affaireService.findOne(id);
         currentAffaire.setReference(affaire.getReference());
         currentAffaire.setTitre(affaire.getTitre());
@@ -55,10 +61,20 @@ public class AffaireController {
         currentAffaire.setStatut(affaire.getStatut());
         return affaireService.save(currentAffaire);
     }
+    
+   /* @PutMapping("/affaires/{reference}")
+    public Affaire updateAffaireWithPut(@PathVariable("reference") String reference, @RequestBody Affaire affaire) { //
+        Affaire currentAffaire = affaireService.findOneByReference(reference);
+        currentAffaire.setReference(affaire.getReference());
+        currentAffaire.setTitre(affaire.getTitre());
+        currentAffaire.setDescription(affaire.getDescription());
+        currentAffaire.setStatut(affaire.getStatut());
+        return affaireService.save(currentAffaire);
+    }*/
 
     @PatchMapping("/affaires/{idAffaire}")
-    public Affaire updateAffaireWithPatch(@PathVariable("idAffaire") Long id, @RequestBody Affaire affaire) {
-        Affaire currentAffaire = affaireService.findOne(id);
+    public Affaire updateAffaireWithPatch(@PathVariable("idAffaire")  Long id, @RequestBody Affaire affaire) {
+        Affaire currentAffaire = (Affaire) affaireService.findOne(id);
         currentAffaire.setReference(affaire.getReference());
         currentAffaire.setTitre(affaire.getTitre());
         currentAffaire.setDescription(affaire.getDescription());

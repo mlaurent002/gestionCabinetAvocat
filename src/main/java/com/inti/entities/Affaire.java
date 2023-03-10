@@ -3,6 +3,7 @@ package com.inti.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Affaire {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAffaire;
+	@Column(unique = true)
 	private String reference;
 	private String titre;
 	private String description;
