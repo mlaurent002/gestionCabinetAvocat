@@ -22,27 +22,27 @@ public class TribunalController {
 	@Autowired
 	ITribunalService tribunalService;
 
-	@GetMapping("/tribunals")
+	@GetMapping("/tribunaux")
 	public List<Tribunal> findAll() {
 		return tribunalService.findAll();
 	}
 
-	@GetMapping("/tribunals/{idTribunal}")
+	@GetMapping("/tribunaux/{idTribunal}")
 	public Tribunal findById(@PathVariable("idTribunal") Long id) {
 		return tribunalService.findById(id);
 	}
 
-	@PostMapping("/tribunals")
+	@PostMapping("/tribunaux")
 	public Tribunal save(@RequestBody Tribunal tribunal) {
 		return tribunalService.save(tribunal);
 	}
 
-	@DeleteMapping("/tribunals/{idTribunal}")
+	@DeleteMapping("/tribunaux/{idTribunal}")
 	public void delete(@PathVariable("idTribunal") Long id) {
 		tribunalService.delete(id);
 	}
 
-	@PutMapping("/tribunals/{idTribunal}")
+	@PutMapping("/tribunaux/{idTribunal}")
 	public Tribunal updateWithPut(@PathVariable("idTribunal") Long id, @RequestBody Tribunal tribunal) {
 		Tribunal currentTribunal = tribunalService.findById(id);
 
@@ -54,7 +54,7 @@ public class TribunalController {
 		return tribunalService.save(currentTribunal);
 	}
 
-	@PatchMapping("/tribunals/{idTribunal}")
+	@PatchMapping("/tribunaux/{idTribunal}")
 	public Tribunal updateWithPatch(@PathVariable("idTribunal") Long id, @RequestBody Tribunal tribunal) {
 		Tribunal currentTribunal = tribunalService.findById(id);
 
