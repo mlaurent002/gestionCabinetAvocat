@@ -20,7 +20,7 @@ public class Affaire {
 	private String reference;
 	private String titre;
 	private String description;
-	private Boolean statut;
+	private int statut;
 	
 	@OneToMany(mappedBy = "affaireFK")
 	@Transient
@@ -33,14 +33,14 @@ public class Affaire {
 	public Affaire() {
 	}
 
-	public Affaire(String reference, String titre, String description, Boolean statut) {
+	public Affaire(String reference, String titre, String description, int statut) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
 		this.statut = statut;
 	}
 
-	public Affaire(String reference, String titre, String description, Boolean statut, List<Document> documents) {
+	public Affaire(String reference, String titre, String description, int statut, List<Document> documents) {
 		this.reference = reference;
 		this.titre = titre;
 		this.description = description;
@@ -80,11 +80,11 @@ public class Affaire {
 		this.description = description;
 	}
 
-	public Boolean getStatut() {
+	public int getStatut() {
 		return statut;
 	}
 
-	public void setStatut(Boolean statut) {
+	public void setStatut(int statut) {
 		this.statut = statut;
 	}
 
