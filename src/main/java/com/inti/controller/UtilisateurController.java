@@ -43,8 +43,9 @@ public class UtilisateurController {
 				utilisateur.getNomUtilisateur(),
 				utilisateur.getPrenomUtilisateur(),
 				utilisateur.getUsername(),
-				passwordEncoder.encode(utilisateur.getPassword()));
-
+				passwordEncoder.encode(utilisateur.getPassword()),
+				utilisateur.isEnable());
+				
 		return utilisateurService.save(currentUtilisateur);
 	}
 

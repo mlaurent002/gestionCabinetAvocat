@@ -33,6 +33,7 @@ public class Utilisateur implements Serializable {
 	private String prenomUtilisateur;
 	private String username;
 	private String password;
+	private boolean enable=true;
 
 	// Relation entre les classes :
 	// ManyToMany Utilisateur <-> Role
@@ -49,26 +50,29 @@ public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
 
+	
 	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
-			String password, Set<Role> roles, List<Tache> taches) {
+			String password, boolean enable) {
 		this.emailUtilisateur = emailUtilisateur;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.username = username;
 		this.password = password;
+		this.enable = enable;
+	}
+
+	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
+			String password, boolean enable, Set<Role> roles, List<Tache> taches) {
+		this.emailUtilisateur = emailUtilisateur;
+		this.nomUtilisateur = nomUtilisateur;
+		this.prenomUtilisateur = prenomUtilisateur;
+		this.username = username;
+		this.password = password;
+		this.enable = enable;
 		this.roles = roles;
 		this.taches = taches;
 	}
 
-	public Utilisateur(String emailUtilisateur, String nomUtilisateur, String prenomUtilisateur, String username,
-			String password) {
-		super();
-		this.emailUtilisateur = emailUtilisateur;
-		this.nomUtilisateur = nomUtilisateur;
-		this.prenomUtilisateur = prenomUtilisateur;
-		this.username = username;
-		this.password = password;
-	}
 
 	// Getters et Setters :
 	public Long getIdUtilisateur() {
@@ -134,13 +138,26 @@ public class Utilisateur implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
-	// To String
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", emailUtilisateur=" + emailUtilisateur
 				+ ", nomUtilisateur=" + nomUtilisateur + ", prenomUtilisateur=" + prenomUtilisateur + ", username="
-				+ username + ", password=" + password + ", roles=" + roles + ", taches=" + taches + "]";
+				+ username + ", password=" + password + ", enable=" + enable + ", roles=" + roles + ", taches=" + taches
+				+ "]";
 	}
+
+	// To String
+
 
 }
