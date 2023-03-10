@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inti.entities.Affaire;
 import com.inti.entities.Utilisateur;
 import com.inti.service.interfaces.IUtilisateurService;
 
@@ -31,10 +32,15 @@ public class UtilisateurController {
 		return utilisateurService.findAll();
 	}
 
-	@GetMapping("/utilisateurs/{idUtilisateur}")
+	/*@GetMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur findOne(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOne(id);
-	}
+	}*/
+	
+	@GetMapping("/utilisateurs/{nomUtilisateur}")
+    public List<Utilisateur>  findByNomUtilisateur(@PathVariable("nomUtilisateur") String nomUtilisateur) {
+        return utilisateurService.findByNomUtilisateur(nomUtilisateur);
+    }
 	
 	@PostMapping("/utilisateurs")
 	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {

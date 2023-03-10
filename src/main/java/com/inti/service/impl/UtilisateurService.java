@@ -38,9 +38,15 @@ public class UtilisateurService implements IUtilisateurService{
 	}
 
 	@Override
+	public List<Utilisateur> findByNomUtilisateur(String nomUtilisateur) {
+		return utilisateurRepository.findByNomUtilisateur(nomUtilisateur);
+	}
+
+	@Override
 	public Utilisateur findByUsername(String username) {
-		
 		return utilisateurRepository.findByUsername(username);
 	}
+
+	
 
 }
