@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.inti.entities.Document;
 import com.inti.service.interfaces.IDocumentService;
@@ -20,42 +23,63 @@ import com.inti.service.interfaces.IDocumentService;
 @CrossOrigin
 public class DocumentController {
 	@Autowired
-    IDocumentService documentService;
+	IDocumentService documentService;
 
-    @GetMapping("/documents")
-    public List<Document> findAll() {
-        return documentService.findAll();
-    }
+	@GetMapping("/documents")
+	public List<Document> findAll() {
+		return documentService.findAll();
+	}
 
-    @GetMapping("/documents/{idDocument}")
-    public Document findOne(@PathVariable("idDocument") Long id) {
-        return documentService.findOne(id);
-    }
+	@GetMapping("/documents/{idDocument}")
+	public Document findOne(@PathVariable("idDocument") Long id) {
+		return documentService.findOne(id);
+	}
 
-    @PostMapping("/documents")
-    public Document saveDocument(@RequestBody Document document) {
-        return documentService.save(document);
-    }
+	@PostMapping("/documents")
+	public String saveDocument(@RequestParam("dateCreation") Date dateCreation, @RequestParam("nom") String nom,
+			@RequestParam("description") String description, @RequestParam("documentFile") MultipartFile documentFile) {
+		try {
+			Document currentDocument = new Document();
+			currentDocument.setDateCreation(dateCreation);
+			currentDocument.setNom(nom);
+			currentDocument.setDescription(description);
+			currentDocument.setDocumentFile(documentFile.getBytes());
+			documentService.save(currentDocument);
+			return "File uploaded successfully!!";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Fail ! maybe you had uploaded the file before !!";
+		}
+	}
 
-    @DeleteMapping("/documents/{idDocument}")
-    public void deleteDocument(@PathVariable("idDocument") Long id) {
-    	documentService.delete(id);
-    }
-    @PutMapping("/documents/{idDocument}")
-    public Document updateDocumentWithPut(@PathVariable("idDocument") Long id, @RequestBody Document document) { //
-        Document currentDocument = documentService.findOne(id);
-        currentDocument.setDateCreation(document.getDateCreation());
-        currentDocument.setNom(document.getNom());
-        currentDocument.setDescription(document.getDescription());
-        return documentService.save(currentDocument);
-    }
+	@DeleteMapping("/documents/{idDocument}")
+	public void deleteDocument(@PathVariable("idDocument") Long id) {
+		documentService.delete(id);
+	}
 
-    @PatchMapping("/documents/{idDocument}")
-    public Document updateDocumentWithPatch(@PathVariable("idDocument") Long id, @RequestBody Document document) {
-        Document currentDocument = documentService.findOne(id);
-        currentDocument.setDateCreation(document.getDateCreation());
-        currentDocument.setNom(document.getNom());
-        currentDocument.setDescription(document.getDescription());
-        return documentService.save(currentDocument);
-    }
+	@PutMapping("/documents/{idDocument}")
+	public String updateDocumentWithPut(@PathVariable("idDocument") Long id, @RequestParam("dateCreation") Date dateCreation, @RequestParam("nom") String nom,
+			@RequestParam("description") String description, @RequestParam("documentFile") MultipartFile documentFile) { //
+		try {
+			Document currentDocument = documentService.findOne(id);
+			currentDocument.setDateCreation(dateCreation);
+			currentDocument.setNom(nom);
+			currentDocument.setDescription(description);
+			currentDocument.setDocumentFile(documentFile.getBytes());
+			documentService.save(currentDocument);
+			return "File uploaded successfully!!";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Fail ! maybe you had uploaded the file before !!";
+		}
+	}
+
+	@PatchMapping("/documents/{idDocument}")
+	public Document updateDocumentWithPatch(@PathVariable("idDocument") Long id, @RequestBody Document document) {
+		Document currentDocument = documentService.findOne(id);
+		currentDocument.setDateCreation(document.getDateCreation());
+		currentDocument.setNom(document.getNom());
+		currentDocument.setDescription(document.getDescription());
+		return documentService.save(currentDocument);
+	}
 }

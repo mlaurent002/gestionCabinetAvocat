@@ -71,6 +71,7 @@ public class UtilisateurController {
 		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
 		currentUtilisateur.setUsername(utilisateur.getUsername());
 		currentUtilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+		currentUtilisateur.setRoles(utilisateur.getRoles());
 		return utilisateurService.save(currentUtilisateur);
 	}
 
@@ -78,7 +79,13 @@ public class UtilisateurController {
 	public Utilisateur updateUtilisateurWithPatch(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
 		Utilisateur currentUtilisateur = utilisateurService.findOne(id);
-		//currentUtilisateur.setPassword(utilisateur.getPassword());
+		currentUtilisateur.setIdUtilisateur(utilisateur.getIdUtilisateur());
+		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
+		currentUtilisateur.setNomUtilisateur(utilisateur.getNomUtilisateur());
+		currentUtilisateur.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
+		currentUtilisateur.setUsername(utilisateur.getUsername());
+		currentUtilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+		currentUtilisateur.setRoles(utilisateur.getRoles());
 		return utilisateurService.save(currentUtilisateur);
 	}
 }
