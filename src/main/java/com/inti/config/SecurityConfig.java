@@ -35,10 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// méthode BAA
 	public void configure(HttpSecurity http) throws Exception {
 		http // La sécurité des requêtes http
-				.authorizeRequests().anyRequest().permitAll() // .authenticated pour authentifier et permitAll pour
-																// afficher dans front
+				.authorizeRequests().anyRequest().permitAll() // .authenticated pour authentifier et permitAll pour afficher dans front
 				.and().formLogin() // formulaire login fournit par le projet Spring Security
-				.permitAll().and().logout().logoutUrl("/logout").permitAll().and().httpBasic() // BAA
+				.permitAll().and().logout().logoutUrl("/logout").permitAll()
+				.and().httpBasic() // BAA
 				.and().csrf().disable(); // méthode d'attaque informatique (cybersécurité)
 	}
 
