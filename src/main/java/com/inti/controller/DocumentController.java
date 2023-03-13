@@ -47,6 +47,7 @@ public class DocumentController {
         currentDocument.setDateCreation(document.getDateCreation());
         currentDocument.setNom(document.getNom());
         currentDocument.setDescription(document.getDescription());
+        currentDocument.setDocumentFile(document.getDocumentFile());
         return documentService.save(currentDocument);
     }
 
