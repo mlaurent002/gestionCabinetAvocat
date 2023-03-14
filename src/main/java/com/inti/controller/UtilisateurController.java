@@ -72,6 +72,7 @@ public class UtilisateurController {
 		currentUtilisateur.setUsername(utilisateur.getUsername());
 		currentUtilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
 		currentUtilisateur.setRoles(utilisateur.getRoles());
+		currentUtilisateur.setEnable(utilisateur.isEnable());
 		return utilisateurService.save(currentUtilisateur);
 	}
 
