@@ -45,14 +45,13 @@ public class UtilisateurController {
 	@PostMapping("/utilisateurs")
 	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
 		Utilisateur currentUtilisateur=new Utilisateur(
-				utilisateur.getEmailUtilisateur(),
 				utilisateur.getNomUtilisateur(),
 				utilisateur.getPrenomUtilisateur(),
+				utilisateur.getEmailUtilisateur(),
 				utilisateur.getUsername(),
 				passwordEncoder.encode(utilisateur.getPassword()),
 				utilisateur.getRoles(),
 				utilisateur.isEnable());
-				
 		return utilisateurService.save(currentUtilisateur);
 	}
 
@@ -65,7 +64,7 @@ public class UtilisateurController {
 	public Utilisateur updateUtilisateurWithPut(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
 		Utilisateur currentUtilisateur = utilisateurService.findOne(id);
-		System.out.println(currentUtilisateur.toString());
+		//System.out.println(currentUtilisateur.toString());
 		currentUtilisateur.setNomUtilisateur(utilisateur.getNomUtilisateur());
 		currentUtilisateur.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
 		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
@@ -78,11 +77,10 @@ public class UtilisateurController {
 	@PatchMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur updateUtilisateurWithPatch(@PathVariable("idUtilisateur") Long id,
 			@RequestBody Utilisateur utilisateur) {
-		Utilisateur currentUtilisateur = utilisateurService.findOne(id);
-		currentUtilisateur.setIdUtilisateur(utilisateur.getIdUtilisateur());
-		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
+		Utilisateur currentUtilisateur = (Utilisateur) utilisateurService.findOne(id);
 		currentUtilisateur.setNomUtilisateur(utilisateur.getNomUtilisateur());
 		currentUtilisateur.setPrenomUtilisateur(utilisateur.getPrenomUtilisateur());
+		currentUtilisateur.setEmailUtilisateur(utilisateur.getEmailUtilisateur());
 		currentUtilisateur.setUsername(utilisateur.getUsername());
 		currentUtilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
 		currentUtilisateur.setRoles(utilisateur.getRoles());
